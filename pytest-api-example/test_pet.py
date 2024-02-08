@@ -1,5 +1,3 @@
-from typing import Literal, Union
-from zoneinfo import available_timezones
 from jsonschema import validate
 import json
 import jsonschema
@@ -23,8 +21,6 @@ def test_pet_schema():
     response = api_helpers.get_api_data(test_endpoint)
 
     assert response.status_code == 200
-
-    dog = schemas.pet["properties"]["status"]["enum"][1]
     # validate(instance=response.json(), schema=schemas.pet)
     try:
         jsonschema.validate(instance=response.json(), schema=schemas.pet)
